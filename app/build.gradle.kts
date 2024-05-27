@@ -37,9 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
-    }
+
 }
 
 dependencies {
@@ -47,6 +45,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
@@ -61,4 +60,22 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.android.gms:play-services-auth:20.2.0")
+    implementation(libs.material)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // Adjust version as necessary
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1") // Adjust version as necessary
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1") // Adjust version as necessary
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.5.1") // This provides Java 8 API compatibility
+
+    // Adding navigation dependencies
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.1") // Adjust version as necessary
+    implementation ("androidx.appcompat:appcompat:1.3.0")  // Check for the latest version
+    implementation ("androidx.fragment:fragment-ktx:1.3.4") // For Kotlin support
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.1") // Adjust version as necessary
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+
 }

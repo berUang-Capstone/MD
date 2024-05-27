@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.subs_inter.MainActivity
+import com.example.subs_inter.ui.MainActivity
 import com.example.subs_inter.databinding.ActivityLoginBinding // Import the generated binding class
 import com.example.subs_inter.customView.EmailCV
 import com.example.subs_inter.customView.PasswordCV

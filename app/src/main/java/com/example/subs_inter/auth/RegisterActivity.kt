@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
-import com.example.subs_inter.MainActivity
+import com.example.subs_inter.ui.MainActivity
 import com.example.subs_inter.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.userProfileChangeRequest
@@ -22,6 +22,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var btnRegister: Button
     lateinit var btnlogin: Button
     lateinit var progressDialog : ProgressDialog
+
     var firebaseAuth = FirebaseAuth.getInstance()
     override fun onStart() {
         super.onStart()
