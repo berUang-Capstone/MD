@@ -32,31 +32,30 @@
     <string name="content">Gambar ini adalah salah satu bagian dari story</string>
     <string name="imageDataNone">Ditampilkan ketika data kosong</string>
 
-    <string name="email">Masukan email kamu</string>
-    <string name="emailFormatWrong">Format email salah</string>
-    <string name="emailTaken">Email yang anda masukan sudah terdaftar, silahkan ganti email</string>
-    <string name="failedRegist">Registrasi gagal, silahkan coba lagi</string>
+    <string name="email">Email Address</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="emailFormatWrong">Format email salah!</string>
+    <string name="emailTaken">Email is already taken, please use other Email!</string>
+    <string name="failedRegist">Registration Failed, Please try again.</string>
 
-    <string name="password">Masukan password kamu</string>
-    <string name="passwordConfirm">Konfirmasi password kamu</string>
-    <string name="passwordVisible">Lihat Password</string>
-    <string name="passwordLess">Password minimal harus 8 karakter</string>
-    <string name="passwordNotMatch">Password tidak sama</string>
-    <string name="passwordAccountWrong">Password yang anda masukan salah</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="passwordConfirm">Re-enter your password</string>
+    <string name="passwordVisible">See password</string>
+    <string name="passwordLess">Password must contain at least 8 characters!</string>
+    <string name="passwordNotMatch">Password does not match!</string>
+    <string name="passwordAccountWrong">The password you entered is incorrect!</string>
 
     <string name="tvLogin">Masuk Akun</string>
     <string name="login_button">Login</string>
-    <string name="invalidLogin">Masukan data akun dengan benar!</string>
-    <string name="registerHeader">Daftar Akun</string>
-    <string name="register">Belum punya akun?</string>
-    <string name="register_button">Daftar</string>
-    <string name="registerCreate">Buat Akun</string>
+    <string name="invalidLogin">The account or password you entered is incorrect!</string>
+    <string name="registerHeader">Register</string>
+    <string name="register_button">Register</string>
+    <string name="registerCreate">Create Account</string>
 
-    <string name="nameNone">Nama tidak boleh kosong</string>
     <string name="emailNone">Email tidak boleh kosong</string>
     <string name="passwordNone">Password tidak boleh kosong</string>
     <string name="passwordConfirmNone">Konfirmasi password tidak boleh kosong</string>
-    <string name="name">Masukan nama kamu</string>
+
 
     <string name="logout">Keluar</string>
     <string name="logoutDescription">Apakah anda yakin ingin keluar?</string>
@@ -64,18 +63,28 @@
     <string name="SuccessLogout">Berhasil keluar</string>
     <string name="cancelLogout">Batal</string>
 
-    <string name="loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor maximus nunc, in convallis lorem accumsan in. Suspendisse suscipit sagittis bibendum. In orci tortor, blandit non orci quis, iaculis rutrum mauris. Maecenas nisi lacus, feugiat non libero in, aliquam convallis dolor. Fusce ligula erat, vulputate eget aliquam et, semper ut neque. Pellentesque placerat dolor sit amet ante posuere, et dignissim elit pharetra. Quisque mattis, nisi et posuere luctus, sem ligula hendrerit magna, id suscipit neque ex nec nisi. Integer convallis a urna at sodales. Proin tristique, ligula ac vehicula blandit, massa dolor placerat ante, non laoreet turpis sem nec neque. Mauris pulvinar nisl tincidunt nisi venenatis sodales id a est. Pellentesque sed ex magna. Sed quis est convallis, viverra tortor vitae, facilisis augue. Quisque sed est vel enim facilisis euismod. Nunc molestie urna non est tempus hendrerit vel quis magna. Sed consectetur nulla quis velit cursus, vel venenatis velit dictum.</string>
-    <string name="imageStoryDesc">Ini berisi gambar dari story</string>
-    <string name="dateStory">Story dibuat pada:</string>
-
     <string name="package_name">com.example.submissionandroidintermediate</string>
 
     <string name="imageStoryUploadDesc">Ini adalah gambar ketika foto dipilih</string>
     <string name="imageSplashDesc">Ini adalah logo bangkit di splashscreen</string>
     <string name="warningAddImage">Upload foto terlebih dahulu</string>
     <string name="warningAddDescription">Tambahkan deskripsi terlebih dahulu</string>
-    <string name="or_login_with">Or Login With\n</string>
+    <string name="or_login_with">Or Login With</string>
     <string name="login">Login</string>
     <string name="remember_me">Remember Me</string>
     <string name="password_length_error">Password Error</string>
+    <string name="password">Password</string>
+    <string name="not_register_yet">Not register yet?\t</string>
+
+        <string name="register">Register</string>
+        <string name="mobile_number">Mobile Number</string>
+        <string name="enter_mobile_number">Enter your mobile number</string>
+        <string name="confirm_password">Confirm Password</string>
+        <string name="enter_password_again">Enter your password again</string>
+        <string name="invalid_mobile_number">Invalid mobile number</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter your username</string>
+    <string name="back_btn">back button</string>
+    <string name="sign_up">Sign Up</string>
+
 </resources>

@@ -3,95 +3,89 @@ package com.example.subs_inter.auth
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.example.subs_inter.MainActivity
-import com.example.subs_inter.R
+import com.example.subs_inter.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.userProfileChangeRequest
-
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 
 class RegisterActivity : AppCompatActivity() {
-    lateinit var editusername: EditText
-    lateinit var editemail: EditText
-    lateinit var editpass: EditText
-    lateinit var editpasscom: EditText
-    lateinit var btnRegister: Button
-    lateinit var btnlogin: Button
-    lateinit var progressDialog : ProgressDialog
-    var firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var progressDialog: ProgressDialog
+    private val firebaseAuth = FirebaseAuth.getInstance()
+
     override fun onStart() {
         super.onStart()
         if (firebaseAuth.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        editusername = findViewById(R.id.username)
-        editemail = findViewById(R.id.email)
-        editpass = findViewById(R.id.password)
-        editpasscom = findViewById(R.id.repassword)
-        btnRegister = findViewById(R.id.signupbtn)
+        progressDialog = ProgressDialog(this).apply {
+            setTitle("Logging")
+            setMessage("Please Wait")
+        }
 
+        binding.registerBtn.setOnClickListener {
+            val username = binding.usernameInput.text.toString()
+            val email = binding.emailInput.text.toString()
+            val password = binding.passwordInput.text.toString()
+            val confirmPassword = binding.confirmPasswordInput.text.toString()
 
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Logging")
-        progressDialog.setMessage("silahkan tunggu")
-
-
-        btnRegister.setOnClickListener {
-            if (editusername.text.isNotEmpty() && editemail.text.isNotEmpty() && editpass.text.isNotEmpty()) {
-                if (editpass.text.toString() == editpasscom.text.toString()) {
-                    processRegister()
+            if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                if (password == confirmPassword) {
+                    processRegister(username, email, password)
+                } else {
+                    Toast.makeText(this, "Passwords do not match", LENGTH_SHORT).show()
                 }
-                else{
-                    Toast.makeText(this, "silahkan isi dulu semua data", LENGTH_SHORT).show()
-                }
-
             } else {
-                Toast.makeText(this, "silahkan isi dulu semua data", LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill in all fields", LENGTH_SHORT).show()
             }
+        }
 
+        binding.backButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
-    private fun processRegister(){
-        val fullname= editusername.text.toString()
-        val email = editemail.text.toString()
-        val password = editpass.text.toString()
+
+    private fun processRegister(fullname: String, email: String, password: String) {
         progressDialog.show()
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener{ task->
-                if(task.isSuccessful){
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = task.result?.user
                     val userUpdateProfile = userProfileChangeRequest {
                         displayName = fullname
                     }
-                    val user = task.result.user
-                    user!!.updateProfile(userUpdateProfile)
-                        .addOnCompleteListener {
+                    user?.updateProfile(userUpdateProfile)
+                        ?.addOnCompleteListener {
                             progressDialog.dismiss()
                             startActivity(Intent(this, MainActivity::class.java))
+                            finish()
                         }
-                        .addOnFailureListener{error2 ->
-                            Toast.makeText(this, error2.localizedMessage, LENGTH_SHORT).show()
+                        ?.addOnFailureListener { error ->
+                            progressDialog.dismiss()
+                            Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
                         }
-
-                }
-                else{
+                } else {
                     progressDialog.dismiss()
+                    task.exception?.let { error ->
+                        Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
+                    }
                 }
-
             }
-            .addOnFailureListener{ error ->
+            .addOnFailureListener { error ->
+                progressDialog.dismiss()
                 Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
             }
-
     }
 }
