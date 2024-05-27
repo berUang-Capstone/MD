@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
-import com.example.subs_inter.MainActivity
 import com.example.subs_inter.databinding.ActivityRegisterBinding
+import com.example.subs_inter.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 
