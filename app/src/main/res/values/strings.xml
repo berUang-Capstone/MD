@@ -96,7 +96,7 @@
     <string name="title_profile">profile\n</string>
     <string name="fab_desc">add_item\n</string>
     <string name="add">add something\n</string>
-    <string name="hi_user">Hi,User\n</string>
+    <string name="hi_user">Hi,User</string>
 
 
 </resources>
