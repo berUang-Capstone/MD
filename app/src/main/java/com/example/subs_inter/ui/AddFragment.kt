@@ -22,9 +22,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class AddFragment : Fragment() {
     private var _binding: FragmentAddBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Trying to access the binding outside of the view lifecycle.")
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,16 +32,26 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Mengatur listener untuk tombol Scan Receipt
+        // Setup listener for the Scan Receipt button
         binding.btnScanReceipt.setOnClickListener {
-            // Menampilkan log atau Toast sebagai contoh
-            Log.d("AddFragment", "Scan Receipt button pressed")
-            Toast.makeText(context, "Scan Receipt telah ditekan", Toast.LENGTH_SHORT).show()
+
+            switchToTakeImageFragment()
+        }
+    }
+
+    private fun switchToTakeImageFragment() {
+        val categoryFragment = TakeImage() // Assuming TakeImage is properly set up to be instantiated like this.
+        // Use requireActivity() to ensure that the fragment is attached to an activity.
+        (activity as MainActivity).hideBottomNav(true)
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, categoryFragment, TakeImage::class.java.simpleName)
+            addToBackStack(null) // Optional: Comment this out if you do not want this transaction added to the back stack.
+            commit()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null // Clear the binding to avoid memory leaks
     }
 }
