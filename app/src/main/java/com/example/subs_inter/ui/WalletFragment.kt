@@ -4,15 +4,10 @@ import com.example.subs_inter.databinding.FragmentWalletBinding
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.subs_inter.R
 import com.example.subs_inter.adapter.SectionsPagerAdapter
 import com.example.subs_inter.auth.LoginActivity
-import com.example.subs_inter.databinding.ActivityMainBinding
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import android.view.LayoutInflater

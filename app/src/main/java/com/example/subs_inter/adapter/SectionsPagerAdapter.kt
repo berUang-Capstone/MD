@@ -1,38 +1,40 @@
 package com.example.subs_inter.adapter
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.subs_inter.ui.AddFragment
 import com.example.subs_inter.ui.ExpenseFragment
 import com.example.subs_inter.ui.IncomeFragment
 
-
-
 class SectionsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    var username: String = ""
+    var mode = MODE_NORMAL
+
+    companion object {
+        const val MODE_NORMAL = 0
+        const val MODE_ADD = 1
+    }
+
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> IncomeFragment().also { fragment ->
-                fragment.arguments = Bundle().apply {
-                    putInt(ARG_POSITION, position + 1)  // Menjadi 1
-                    putString(ARG_USERNAME, username)
-                }
+        Log.d("SectionsPagerAdapter", "Creating fragment at position $position with mode $mode")
+        return when (mode) {
+            1 -> AddFragment()
+            else -> when (position) {
+                0 -> IncomeFragment()
+                else -> ExpenseFragment()
             }
-            1 -> ExpenseFragment().also { fragment ->
-                fragment.arguments = Bundle().apply {
-                    putInt(ARG_POSITION, position + 1)  // Menjadi 2
-                    putString(ARG_USERNAME, username)
-                }
-            }
-            else -> throw IllegalStateException("Invalid position $position")
         }
     }
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int {
+        val itemCount = if (mode == MODE_ADD) 1 else 2
+        Log.d("SectionsPagerAdapter", "getItemCount: $itemCount for mode $mode")
+        return itemCount
+    }
 
-    companion object {
-        const val ARG_POSITION = "position"
-        const val ARG_USERNAME = "username"
+    fun switchMode(newMode: Int) {
+        mode = newMode
+        notifyDataSetChanged()
+        Log.d("SectionsPagerAdapter", "Mode switched to $mode, notifyDataSetChanged called")
     }
 }
