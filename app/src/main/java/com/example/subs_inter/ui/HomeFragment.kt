@@ -1,18 +1,16 @@
 package com.example.subs_inter.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import com.example.subs_inter.R
 import com.example.subs_inter.adapter.SectionsPagerAdapter
 import com.example.subs_inter.auth.LoginActivity
 import com.example.subs_inter.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import android.util.Log
-import androidx.activity.addCallback
-import com.example.subs_inter.R
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -23,6 +21,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -34,6 +33,12 @@ class HomeFragment : Fragment() {
         setupOnBackPressed()
         setupTabLayout()
 
+        val toolbar = binding.toolbar
+        toolbar.setNavigationIcon(R.drawable.ic_logout)
+        toolbar.setNavigationOnClickListener {
+            logout()
+        }
+
         binding.fab.setOnClickListener {
             val newMode = if (sectionsPagerAdapter.mode == SectionsPagerAdapter.MODE_NORMAL) {
                 SectionsPagerAdapter.MODE_ADD
@@ -44,9 +49,22 @@ class HomeFragment : Fragment() {
             binding.viewPager.adapter = sectionsPagerAdapter // Re-set the adapter
             binding.viewPager.currentItem = 0 // Ensure it navigates to the correct fragment
             setupTabLayout()
-            Log.d("HomeFragment", "FAB clicked, mode switched to $newMode, ViewPager adapter reset and position set to 0")
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_logout -> {
+                logout()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setupTabLayout() {
@@ -59,7 +77,6 @@ class HomeFragment : Fragment() {
             }
         }
         tabLayoutMediator?.attach()
-        Log.d("HomeFragment", "TabLayoutMediator set up, mode is ${sectionsPagerAdapter.mode}")
     }
 
     private fun setupOnBackPressed() {
@@ -68,12 +85,19 @@ class HomeFragment : Fragment() {
             if (sectionsPagerAdapter.mode == SectionsPagerAdapter.MODE_ADD) {
                 sectionsPagerAdapter.switchMode(SectionsPagerAdapter.MODE_NORMAL)
                 setupTabLayout()
-                Log.d("HomeFragment", "Back pressed, mode switched to normal")
             } else {
                 isEnabled = false
                 activity?.onBackPressed()
             }
         }
+    }
+
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     override fun onDestroyView() {
