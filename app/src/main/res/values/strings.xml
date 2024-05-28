@@ -57,8 +57,11 @@
     <string name="passwordConfirmNone">Konfirmasi password tidak boleh kosong</string>
 
 
-    <string name="logout">LOGOUT</string>
-    <string name="logoutDescription">Are you sure you want to logout?</string>
+    <string name="logout">Keluar</string>
+    <string name="logoutDescription">Apakah anda yakin ingin keluar?</string>
+    <string name="logoutButton">Keluar</string>
+    <string name="SuccessLogout">Berhasil keluar</string>
+    <string name="cancelLogout">Batal</string>
 
     <string name="package_name">com.example.submissionandroidintermediate</string>
 
@@ -93,7 +96,7 @@
     <string name="title_profile">profile\n</string>
     <string name="fab_desc">add_item\n</string>
     <string name="add">add something\n</string>
-    <string name="hi_user">Hi, User</string>
+    <string name="hi_user">Hi,User\n</string>
 
 
 </resources>

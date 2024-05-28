@@ -9,6 +9,7 @@ import com.example.subs_inter.R
 import com.example.subs_inter.adapter.SectionsPagerAdapter
 import com.example.subs_inter.auth.LoginActivity
 import com.example.subs_inter.databinding.FragmentHomeBinding
+
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 
