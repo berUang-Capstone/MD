@@ -17,19 +17,8 @@ class WriteDetailMoneyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_write_detail_money, container, false)
         textViewDetails = view.findViewById(R.id.tvDetails)
-        loadSavedData()
+
         return view
     }
 
-    private fun loadSavedData() {
-        val db = Room.databaseBuilder(requireContext().applicationContext, WriteDetailFragment.AppDatabase::class.java, "database-name").build()
-        lifecycleScope.launch {
-            val allSelections = db.userSelectionDao().getAllSelections()
-            val stringBuilder = StringBuilder()
-            allSelections.forEach {
-                stringBuilder.append("ID: ${it.id}, Type: ${it.type}, Category: ${it.category}\n")
-            }
-            textViewDetails.text = stringBuilder.toString()
-        }
-    }
 }
