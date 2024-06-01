@@ -100,7 +100,11 @@ class HomeFragment : Fragment() {
         startActivity(intent)
         requireActivity().finish()
     }
-
+    override fun onResume() {
+        super.onResume()
+        // Make sure the bottom navigation bar is shown when this fragment is resumed
+        (activity as? MainActivity)?.hideBottomNav(false)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

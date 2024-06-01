@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.11" apply false //dengan asumsi versi Kotlin 1.9.0
+
+    id("kotlin-parcelize")
 }
 
 android {
@@ -13,7 +16,7 @@ android {
     }
     defaultConfig {
         applicationId = "com.example.subs_inter"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -76,6 +79,21 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
     implementation(libs.androidx.navigation.fragment.ktx)
+
+    implementation ("androidx.camera:camera-core:1.1.0-alpha08")
+    implementation ("androidx.camera:camera-camera2:1.1.0-alpha08")
+    implementation ("androidx.camera:camera-lifecycle:1.1.0-alpha08")
+    implementation ("androidx.camera:camera-view:1.0.0-alpha31")
+    implementation ("androidx.camera:camera-camera2")
+    implementation ("androidx.camera:camera-lifecycle:")
+    implementation ("androidx.camera:camera-view:1.0.0-alpha20")
+    implementation ("androidx.camera:camera-core:")
+    implementation ("androidx.room:room-runtime")
+    annotationProcessor ("androidx.room:room-compiler")
+    implementation ("androidx.room:room-ktx")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.androidx.room.runtime)
 
 
 }

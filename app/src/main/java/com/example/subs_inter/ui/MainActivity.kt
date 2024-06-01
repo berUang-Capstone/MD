@@ -31,4 +31,11 @@ class MainActivity : AppCompatActivity() {
         // Properly access the BottomNavigationView
         bottomNavigationView.visibility = if (hide) View.GONE else View.VISIBLE
     }
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()  // This will exit the app if no more entries are in the back stack
+        }
+    }
 }
