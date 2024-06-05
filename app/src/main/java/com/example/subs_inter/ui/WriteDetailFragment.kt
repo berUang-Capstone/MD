@@ -1,25 +1,58 @@
 package com.example.subs_inter.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.subs_inter.R
 import com.example.subs_inter.databinding.FragmentWriteDetailBinding
-
-
-
-import android.widget.Toast
-
+import com.example.subs_inter.database.Note
+import com.example.subs_inter.helper.ViewModelFactory
+import com.example.subs_inter.viewmodel.WriteDetailViewModel
 
 class WriteDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentWriteDetailBinding
+    companion object {
+        const val EXTRA_NOTE = "extra_note"
+        const val ALERT_DIALOG_CLOSE = 10
+        const val ALERT_DIALOG_DELETE = 20
+    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentWriteDetailBinding.inflate(inflater, container, false)
+    private var isEdit = false
+    private var note: Note? = null
+    private lateinit var writeDetailViewModel: WriteDetailViewModel
+    private var _binding: FragmentWriteDetailBinding? = null
+    private val binding get() = _binding!!
+
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        writeDetailViewModel = ViewModelProvider(this, ViewModelFactory(requireActivity().application)).get(NoteAddUpdateViewModel::class.java)
+        note = arguments?.getParcelable(EXTRA_NOTE)
+        isEdit = note != null
+        val actionBarTitle: String
+        val btnTitle: String
+
+        if (isEdit) {
+            actionBarTitle = getString(R.string.change)
+            btnTitle = getString(R.string.update)
+            note?.let {
+                binding.edtTitle.setText(it.title)
+                binding.edtDescription.setText(it.description)
+            }
+        } else {
+            actionBarTitle = getString(R.string.add)
+            btnTitle = getString(R.string.save)
+            note = Note()
+        }
+
+        _binding = FragmentWriteDetailBinding.inflate(inflater, container, false)
+        setupViewModel()
         setupInitialSpinner()
         setupRadioGroup()
         setupSpinnerInteraction()
@@ -27,6 +60,15 @@ class WriteDetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null  // Clean up the binding to avoid memory leaks
+    }
+
+    private fun setupViewModel() {
+        val factory = ViewModelFactory(requireActivity().application)
+        writeDetailViewModel = ViewModelProvider(this, factory).get(WriteDetailViewModel::class.java)
+    }
 
     private fun setupInitialSpinner() {
         ArrayAdapter.createFromResource(
@@ -39,8 +81,6 @@ class WriteDetailFragment : Fragment() {
             binding.categorySpinner.isEnabled = false  // Disable spinner initially
         }
     }
-
-
 
     private fun setupRadioGroup() {
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -57,7 +97,6 @@ class WriteDetailFragment : Fragment() {
         }
     }
 
-
     private fun updateSpinner(arrayId: Int) {
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -68,6 +107,7 @@ class WriteDetailFragment : Fragment() {
             binding.categorySpinner.adapter = adapter
         }
     }
+
     private fun setupSpinnerInteraction() {
         binding.categorySpinner.setOnTouchListener { v, event ->
             if (!binding.categorySpinner.isEnabled) {
