@@ -1,0 +1,120 @@
+package com.example.subs_inter.ui.add_detail
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.example.subs_inter.R
+import com.example.subs_inter.databinding.FragmentWriteDetailBinding
+import com.example.subs_inter.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
+
+
+@AndroidEntryPoint
+class WriteDetailFragment : Fragment() {
+
+    private val viewModel: WriteDetailViewModel by activityViewModels()
+
+    private var _binding: FragmentWriteDetailBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentWriteDetailBinding.inflate(inflater, container, false)
+        activity?.onBackPressedDispatcher?.addCallback {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+        setupInitialSpinner()
+        setupRadioGroup()
+        setupSpinnerInteraction()
+        setupNextButton()
+        return binding.root
+    }
+
+
+    private fun setupInitialSpinner() {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.default_categories,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.categorySpinner.adapter = adapter
+            binding.categorySpinner.isEnabled = false  // Disable spinner initially
+        }
+    }
+
+    private fun setupRadioGroup() {
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radio_income -> {
+                    updateSpinner(R.array.income_categories)
+                    binding.categorySpinner.isEnabled = true  // Enable spinner on selection
+                }
+                R.id.radio_expense -> {
+                    updateSpinner(R.array.expense_categories)
+                    binding.categorySpinner.isEnabled = true  // Enable spinner on selection
+                }
+            }
+        }
+    }
+
+    private fun updateSpinner(arrayId: Int) {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            arrayId,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.categorySpinner.adapter = adapter
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupSpinnerInteraction() {
+        binding.categorySpinner.setOnTouchListener { _, _ ->
+            if (!binding.categorySpinner.isEnabled) {
+                Toast.makeText(context, "Please select Income or Expense first.", Toast.LENGTH_SHORT).show()
+                true // Consume the touch event to prevent interaction
+            } else {
+                false // Allow normal handling of the touch event
+            }
+        }
+    }
+
+    private fun setupNextButton() {
+        binding.buttonNext.setOnClickListener {
+            if (binding.radioGroup.checkedRadioButtonId == -1) {
+                Toast.makeText(context, "Please select Income or Expense first.", Toast.LENGTH_SHORT).show()
+            } else {
+                val selectedRadioButtonId = binding.radioGroup.checkedRadioButtonId
+                val selectedRadioButton = view?.findViewById<RadioButton>(selectedRadioButtonId)
+                val title = selectedRadioButton?.text.toString().trim()
+                val category = binding.categorySpinner.selectedItem?.toString()?.trim() ?: ""
+
+                viewModel.updateTitleCategoryNote(title, category)
+                val categoryFragment = WriteDetailMoneyFragment()
+                val fragmentManager = parentFragmentManager
+                fragmentManager.beginTransaction().apply {
+                    replace(R.id.nav_host_fragment, categoryFragment, WriteDetailMoneyFragment::class.java.simpleName)
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null  // Clean up the binding to avoid memory leaks
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_categories">
+        <item>Salary</item> <!-- Assuming 'Salary' is a reasonable default -->
+    </string-array>
+    <string-array name="income_categories">
+        <item>Salary</item>
+        <item>Bonus</item>
+        <item>Investment</item>
+    </string-array>
+    <string-array name="expense_categories">
+        <item>Foods</item>
+        <item>Transportation</item>
+        <item>Shopping</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="type">
+        <item>Income</item>
+        <item>Expense</item> <!-- Assuming 'Salary' is a reasonable default -->
+    </string-array>
+
+</resources>

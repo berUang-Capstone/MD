@@ -1,0 +1,105 @@
+<resources>
+
+    <string name="app_name">Story App</string>
+    <string name="login_description">Halo, selamat datang di Story App</string>
+    <string name="radbut_income">Income</string>
+    <string name="radbut_expense">expense</string>
+
+    <string name="iconLogin">Hanya icon hiasan untuk login</string>
+    <string name="iconRegister">Hanya icon hiasan untuk register</string>
+    <string name="registerDescription">Silahkan masukkan data akun kamu</string>
+    <string name="storySplash">Ga punya temen cerita? ceritain di sini aja!</string>
+    <string name="bottomSplash">Dibuat oleh Bangkit Cohort</string>
+    <string name="createAccount">Buat Akun</string>
+    <string name="btnFloating">untuk membuat konten baru</string>
+    <string name="noData">Data tidak ditemukan</string>
+    <string name="changeLanguage">Ganti Bahasa</string>
+    <string name="home">Beranda</string>
+    <string name="error_load">Gagal memuat data. Pesan Error:</string>
+    <string name="refresh">Muat Ulang</string>
+    <string name="scrollView">For scrolling item</string>
+    <string name="detail_title">%1$s\'s Story</string>
+    <string name="post_as">Bagikan cerita sebagai </string>
+    <string name="post_users">Buat cerita baru</string>
+    <string name="message">Pesan  :</string>
+
+    <string name="cameraChoose">Kamera</string>
+    <string name="galleryChoose">Galeri</string>
+    <string name="descriptionStory">Deskripsi Story</string>
+    <string name="btnPost">Bagikan Story</string>
+    <string name="choose_picture">Pilih Gambar</string>
+    <string name="choose_camera">Pilih Kamera</string>
+
+    <string name="nameUser">Nama</string>
+    <string name="timeCreatedContent">13 April 2023, 12:18:54</string>
+    <string name="content">Gambar ini adalah salah satu bagian dari story</string>
+    <string name="imageDataNone">Ditampilkan ketika data kosong</string>
+
+    <string name="email">Email Address</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="emailFormatWrong">Format email salah!</string>
+    <string name="emailTaken">Email is already taken, please use other Email!</string>
+    <string name="failedRegist">Registration Failed, Please try again.</string>
+
+    <string name="enter_password">Enter your password</string>
+    <string name="passwordConfirm">Re-enter your password</string>
+    <string name="passwordVisible">See password</string>
+    <string name="passwordLess">Password must contain at least 8 characters!</string>
+    <string name="passwordNotMatch">Password does not match!</string>
+    <string name="passwordAccountWrong">The password you entered is incorrect!</string>
+
+    <string name="tvLogin">Masuk Akun</string>
+    <string name="login_button">Login</string>
+    <string name="invalidLogin">The account or password you entered is incorrect!</string>
+    <string name="registerHeader">Register</string>
+    <string name="register_button">Register</string>
+    <string name="registerCreate">Create Account</string>
+
+    <string name="emailNone">Email tidak boleh kosong</string>
+    <string name="passwordNone">Password tidak boleh kosong</string>
+    <string name="passwordConfirmNone">Konfirmasi password tidak boleh kosong</string>
+
+
+    <string name="logout">Keluar</string>
+    <string name="logoutDescription">Apakah anda yakin ingin keluar?</string>
+    <string name="logoutButton">Keluar</string>
+    <string name="SuccessLogout">Berhasil keluar</string>
+    <string name="cancelLogout">Batal</string>
+
+    <string name="package_name">com.example.submissionandroidintermediate</string>
+
+    <string name="imageStoryUploadDesc">Ini adalah gambar ketika foto dipilih</string>
+    <string name="imageSplashDesc">Ini adalah logo bangkit di splashscreen</string>
+    <string name="warningAddImage">Upload foto terlebih dahulu</string>
+    <string name="warningAddDescription">Tambahkan deskripsi terlebih dahulu</string>
+    <string name="or_login_with">Or Login With</string>
+    <string name="login">Login</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="password_length_error">Password Error</string>
+    <string name="password">Password</string>
+    <string name="not_register_yet">Not register yet?</string>
+
+    <string name="register">Register</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="enter_mobile_number">Enter your mobile number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_password_again">Enter your password again</string>
+    <string name="invalid_mobile_number">Invalid mobile number</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter your username</string>
+    <string name="back_btn">back button</string>
+    <string name="sign_up">Sign Up</string>
+
+    <string name="tab_text_1">Income</string>
+    <string name="tab_text_2">Expense</string>
+    <string name="title_home">Wallet</string>
+    <string name="title_History">History</string>
+    <string name="title_target">My Target</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_profile">Profile\n</string>
+    <string name="fab_desc">add_item\n</string>
+    <string name="add">Add New Transaction\n</string>
+    <string name="hi_user">Hi,User</string>
+
+
+</resources>

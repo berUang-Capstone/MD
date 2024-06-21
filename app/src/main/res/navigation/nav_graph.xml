@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.subs_inter.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_writeDetailFragment"
+            app:destination="@id/writeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/writeDetailFragment"
+        android:name="com.example.subs_inter.ui.add_detail.WriteDetailFragment"
+        tools:layout="@layout/fragment_write_detail">
+        <action
+            android:id="@+id/action_writeDetailFragment_to_writeDetailMoneyFragment"
+            app:destination="@id/writeDetailMoneyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/writeDetailMoneyFragment"
+        android:name="com.example.subs_inter.ui.add_detail.WriteDetailMoneyFragment"
+        tools:layout="@layout/fragment_write_detail_money">
+        <action
+            android:id="@+id/action_writeDetailMoneyFragment_to_fragmentSummary"
+            app:destination="@id/fragmentSummary" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSummary"
+        android:name="com.example.subs_inter.ui.summary.FragmentSummary"
+        tools:layout="@layout/fragment_summary">
+        <action
+            android:id="@+id/action_fragmentSummary_to_writeDetailMoneyFragment"
+            app:destination="@id/writeDetailMoneyFragment" />
+    </fragment>
+</navigation>

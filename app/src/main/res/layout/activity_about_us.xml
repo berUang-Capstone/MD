@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AboutUsActivity">
+
+    <ImageView
+        android:id="@+id/account_image"
+        android:layout_width="187dp"
+        android:layout_height="187dp"
+        android:src="@drawable/logo_beruang"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="354dp"
+        android:layout_height="2dp"
+        android:background="#E0E0E0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_image"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="360dp"
+        android:layout_height="338dp"
+        android:justificationMode="inter_word"
+        android:text="Ber-Uang is a personal finance management application designed to help you effortlessly manage your expenses, income, and savings goals. Launched in 2024, this application was developed by the Bangkit 2024 Capstone Product Team, which consists of:\n\n- M007D4KY1851 Hendra Sutrisno\n- M007D4KY2576 Rizky Syah Gumelar\n- M200D4KY1483 Safril Isnaini\n- A005D4KY4238 Muhammad Damara Fathur Rahman\n- A005D4KX4246 Nasywa Tsuraya\n- C010D4KY0299 Muhammad Alif Ismady\n- C007D4KY0863 Rayhan Satria Andromeda"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.086" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
